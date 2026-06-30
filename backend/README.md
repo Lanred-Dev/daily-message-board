@@ -4,7 +4,9 @@ Handles the backend for the message board allows the board to fetch new messages
 
 ### Requirements
 
-* Docker 28 (or newer)
+- Docker 28 (or newer)
+- Node.js 24 (or newer)
+- Disk space for storing messages and images
 
 ### Setup
 
@@ -27,4 +29,4 @@ docker build -t message-board .
 docker run --env-file .env -p 4000:4000 message-board
 ```
 
-* Replace `4000:4000` with the desired port mapping.
+- Replace `4000:4000` with the desired port mapping.
