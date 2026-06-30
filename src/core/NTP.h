@@ -2,7 +2,7 @@
 
 #include "classes/BootStatus.h"
 
-namespace MessageChangeButton {
+namespace NTP {
     BootStatus setup();
-    bool isPressed();
+    unsigned long getTime();
 }
