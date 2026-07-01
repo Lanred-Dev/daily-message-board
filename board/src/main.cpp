@@ -38,6 +38,7 @@ void setup()
   attemptSetup("Display", Display::setup);
   attemptSetup("Internet", Internet::setup);
   attemptSetup("NTP", NTP::setup);
+  attemptSetup("Updater", Updater::setup);
   attemptSetup("Message", MessageSystem::setup);
   attemptSetup("UI", UI::setup);
 }
