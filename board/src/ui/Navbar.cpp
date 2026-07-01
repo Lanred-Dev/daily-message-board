@@ -12,9 +12,6 @@ const Vector2 NAVBAR_POSITION(DISPLAY_WIDTH / 2 - NAVBAR_WIDTH / 2, DISPLAY_HEIG
 
 void Navbar::setup()
 {
-    Container *background = new Container(NAVBAR_POSITION, Vector2(NAVBAR_WIDTH, NAVBAR_HEIGHT), 99, Color::CONTAINER_BACKGROUND, 15);
-    UI::addInstance(background);
-
     const int buttonRadius = 15;
     const int buttonDiameter = buttonRadius * 2;
     const int buttonSpacing = 6;
