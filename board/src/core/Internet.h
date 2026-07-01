@@ -5,7 +5,7 @@
 #include "classes/BootStatus.h"
 
 namespace Internet {
-    inline static WiFiManager manager;
+    inline WiFiManager manager;
 
     BootStatus setup();
     std::string fetch(const char *url);
