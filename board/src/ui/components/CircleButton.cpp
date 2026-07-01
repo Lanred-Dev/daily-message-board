@@ -10,7 +10,7 @@ void CircleButton::draw()
         lastRadius = radius;
     }
 
-    Display::canvas.fillCircle(position.x + radius, position.y + radius, radius, color);
+    Display::canvas.fillCircle(position.x, position.y, radius, color);
 
     if (Display::isTouched)
     {
