@@ -3,6 +3,7 @@
 #include <Arduino.h>
 #include "core/Internet.h"
 #include "core/Storage.h"
+#include "systems/Message.h"
 
 void Updater::loop()
 {
@@ -17,15 +18,22 @@ void Updater::loop()
 
 void Updater::checkForUpdates()
 {
-    std::string timeResponse = Internet::fetch(TIME_UPDATE_URL);
-    std::string savedTime = Storage::readTxt("/lastUpdatedAt.txt");
+    std::string lastUpdateTime = Internet::fetch(LAST_UPDATE_TIME_URL);
+    std::string savedTime = Storage::readTxt("/last-updated-at.txt");
 
-    if (timeResponse == savedTime)
+    if (lastUpdateTime == savedTime)
         return;
 
-    Storage::writeTxt("/lastUpdatedAt.txt", timeResponse.c_str());
+    Storage::writeTxt("/last-updated-at.txt", lastUpdateTime.c_str());
 
-    std::string messageResponse = Internet::fetch(MESSAGE_UPDATE_URL);
-    std::string imageResponse = Internet::fetch(IMAGE_UPDATE_URL);
-    std::string calendarResponse = Internet::fetch(CALENDAR_UPDATE_URL);
+    std::string messageResponse = Internet::fetch(GET_MESSAGE_UPDATE_URL);
+
+    if (!messageResponse.empty() && messageResponse != MessageSystem::currentMessageContent)
+    {
+        MessageSystem::addMessage(messageResponse);
+        MessageSystem::currentMessageIndex = MessageSystem::readMessagesFile().size() - 1;
+    }
+
+    std::string imageResponse = Internet::fetch(GET_IMAGE_UPDATE_URL);
+    std::string calendarResponse = Internet::fetch(GET_CALENDAR_UPDATE_URL);
 }
