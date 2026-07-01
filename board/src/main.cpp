@@ -7,6 +7,7 @@
 #include "systems/Message.h"
 #include "systems/UI.h"
 #include "core/Display.h"
+#include "config.h"
 
 void attemptSetup(const char *moduleName, BootStatus (*setupFunction)())
 {
@@ -30,9 +31,26 @@ void attemptSetup(const char *moduleName, BootStatus (*setupFunction)())
   Serial.println(status.message);
 }
 
+void initSharedHardware()
+{
+    pinMode(TFT_CS, OUTPUT);
+    pinMode(TOUCH_CS, OUTPUT);
+    pinMode(SD_CS, OUTPUT);
+    
+    digitalWrite(TFT_CS, HIGH);   
+    digitalWrite(TOUCH_CS, HIGH); 
+    digitalWrite(SD_CS, HIGH); 
+
+    delay(50);
+
+    SPI.begin(BUS_SCK, BUS_MISO, BUS_MOSI);
+}
+
 void setup()
 {
   Serial.begin(BAUD_RATE);
+
+  initSharedHardware();
 
   attemptSetup("Storage", Storage::setup);
   attemptSetup("Display", Display::setup);
