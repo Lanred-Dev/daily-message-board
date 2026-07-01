@@ -7,15 +7,15 @@ void Button::draw()
 
     if (Display::isTouched)
     {
-        isPressed(Display::touchPosition);
+        isPressed();
     }
     else
         lastPressedState = false;
 }
 
-bool Button::isPressed(const Vector2 &touchedAt)
+bool Button::isPressed()
 {
-    if (touchedAt.x >= position.x && touchedAt.x <= (position.x + size.x) && touchedAt.y >= position.y && touchedAt.y <= (position.y + size.y))
+    if (Display::touchPosition.x >= position.x && Display::touchPosition.x <= (position.x + size.x) && Display::touchPosition.y >= position.y && Display::touchPosition.y <= (position.y + size.y))
     {
         if (!lastPressedState)
         {

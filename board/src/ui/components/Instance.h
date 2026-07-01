@@ -7,10 +7,11 @@ class Instance
 public:
     Vector2 position;
     Vector2 size;
-    bool isVisible = true;
-    int zIndex = 0;
+    bool isVisible;
+    int zIndex;
 
-    Instance(const Vector2 &newPosition, const Vector2 &newSize) : position(newPosition), size(newSize) {}
+    Instance(const Vector2 &position, const Vector2 &size, int zIndex) : position(position), size(size), isVisible(true), zIndex(zIndex) {}
+
     virtual ~Instance() = default;
 
     virtual void draw() = 0;
