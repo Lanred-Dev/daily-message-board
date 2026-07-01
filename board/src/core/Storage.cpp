@@ -4,13 +4,9 @@
 #include "Storage.h"
 #include "config.h"
 
-SPIClass hspiBus(HSPI);
-
 BootStatus Storage::setup()
 {
-    SPI.begin(SD_SCLK, SD_MISO, SD_MOSI);
-
-    if (!SD.begin(SD_CS_PIN))
+    if (!SD.begin(SD_CS, SPI))
         return {"Failed to initialize SD card.", false};
 
     if (SD.cardType() == CARD_NONE)
