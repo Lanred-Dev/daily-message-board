@@ -28,7 +28,7 @@ export const route: RouteOptions = {
                 return reply.code(ResponseCodes.ServerError).send("");
             }
         } catch (error) {
-            return reply.code(ResponseCodes.ServerError).send("");
+            return reply.code(ResponseCodes.ServerError).send(error);
         }
     },
 };

@@ -15,7 +15,7 @@ export const getUpdateTimeRoute: RouteOptions = {
                 .type("text/plain; charset=utf-8")
                 .send(content);
         } catch (error) {
-            return reply.code(ResponseCodes.ServerError).send("");
+            return reply.code(ResponseCodes.ServerError).send(error);
         }
     },
 };

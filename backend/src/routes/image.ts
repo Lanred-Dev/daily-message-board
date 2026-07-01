@@ -56,8 +56,7 @@ export const postImageRoute: RouteOptions = {
                     .send(new Error("Failed to process image file."));
             }
         } catch (error) {
-            request.log.error(error);
-            return reply.code(ResponseCodes.ServerError).send({ error: "Storage read failure" });
+            return reply.code(ResponseCodes.ServerError).send(error);
         }
     },
 };

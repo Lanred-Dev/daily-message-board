@@ -25,7 +25,7 @@ export const getMessageRoute: RouteOptions = {
                 .type("text/plain; charset=utf-8")
                 .send(lastLine);
         } catch (error) {
-            return reply.code(ResponseCodes.ServerError).send("");
+            return reply.code(ResponseCodes.ServerError).send(error);
         }
     },
 };
@@ -42,7 +42,7 @@ export const postMessageRoute: RouteOptions = {
             await updateSavedTime();
             return reply.code(ResponseCodes.SuccessNoResponse).send("");
         } catch (error) {
-            return reply.code(ResponseCodes.ServerError).send("");
+            return reply.code(ResponseCodes.ServerError).send(error);
         }
     },
 };
