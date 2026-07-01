@@ -4,6 +4,8 @@
 #include "core/NTP.h"
 #include "core/Storage.h"
 #include "systems/Updater.h"
+#include "systems/Message.h"
+#include "systems/UI.h"
 #include "core/Display.h"
 
 void attemptSetup(const char *moduleName, BootStatus (*setupFunction)())
@@ -36,9 +38,12 @@ void setup()
   attemptSetup("Display", Display::setup);
   attemptSetup("Internet", Internet::setup);
   attemptSetup("NTP", NTP::setup);
+  attemptSetup("Message", MessageSystem::setup);
+  attemptSetup("UI", UI::setup);
 }
 
 void loop()
 {
   Updater::loop();
+  Display::loop();
 }
