@@ -12,6 +12,13 @@ export async function writeFile(filename: string, data: Buffer): Promise<void> {
 
 export async function readFile(filename: string): Promise<Buffer> {
     const filePath = path.join(STORAGE_DIRECTORY, filename);
+
+    if (!fs.existsSync(filePath)) {
+        const buffer = Buffer.from("");
+        await fs.promises.writeFile(filePath, buffer);
+        return buffer;
+    }
+
     return await fs.promises.readFile(filePath);
 }
 
