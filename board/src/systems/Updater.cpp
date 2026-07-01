@@ -5,6 +5,13 @@
 #include "core/Storage.h"
 #include "systems/Message.h"
 
+BootStatus Updater::setup()
+{
+    lastUpdateAt = millis();
+    checkForUpdates();
+    return {"Updater initialized successfully.", true};
+}
+
 void Updater::loop()
 {
     unsigned long now = millis();
