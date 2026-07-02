@@ -28,10 +28,10 @@ A config.h file should be preset inside the include directory. This file should 
 #define TIMEZONE_OFFSET -21600       // CST
 #define DAYLIGHT_SAVINGS_OFFSET 3600 // 1 hour
 
-#define SD_CS_PIN 5
-#define SD_MOSI 23
-#define SD_MISO 19
 #define SD_SCLK 18
+#define SD_MISO 19
+#define SD_MOSI 23
+#define SD_CS 5
 
 #define UPDATE_CHECK_INTERVAL 300000 // 5 minutes
 
