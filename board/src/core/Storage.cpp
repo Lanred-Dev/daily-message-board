@@ -6,7 +6,10 @@
 
 BootStatus Storage::setup()
 {
-    if (!SD.begin(SD_CS, SPI))
+    SPI.begin(SD_SCLK, SD_MISO, SD_MOSI);
+  SPI.setDataMode(SPI_MODE0);
+
+    if (!SD.begin(SD_CS, SPI, 2000000))
         return {"Failed to initialize SD card.", false};
 
     if (SD.cardType() == CARD_NONE)
